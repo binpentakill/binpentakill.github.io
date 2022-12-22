@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Chap3 Demo -- Rotating Square Slider</title>
+	<script id="vertex-shader" type="x-shader/x-vertex">
+	        attribute vec2 vPosition; //顶点坐标
+	        attribute vec4 vColor; //顶点颜色
+	        varying vec4 fColor;
+	    
+	        void main()
+	        {
+	            gl_Position = vec4(vPosition, 0.0, 1.0);
+	            fColor = vColor;
+	        }
+	    </script>
+	
+	    <script id="fragment-shader" type="x-shader/x-fragment">
+	        precision mediump float;
+	        varying vec4 fColor;
+	    
+	        void main()
+	        {
+	            gl_FragColor = fColor;
+	        }
+	    </script>
+	<script type="text/javascript" src="../js/common/webgl-utils.js"></script>
+	<script type="text/javascript" src="../js/common/initShaders.js"></script>
+	<script type="text/javascript" src="../js/common/MV.js"></script>
+	<script type="text/javascript" src="../js/ch03/tetromino.js"></script>
+	
+	    <style>
+	        .container {
+	            display: flex;
+	            flex-direction: column;
+	            align-items: center;
+	            width: 100%;
+	        }
+	
+	        .button {
+	            margin: 10px 5px;
+	            height: 50px;
+	            font-size: 16px;
+	        }
+	    </style>
+	</head>
+	
+	<body>
+	    <div class="container">
+	        <canvas id="gl-canvas" width="570" height="570">
+	            Oops ... your browser doesn't support the HTML5 canvas element
+	        </canvas>
+	        <div>
+	            <button class="button" onclick="moveLeftBtnClick()">向左(←)</button>
+	            <button class="button" onclick="moveRightBtnClick()">向右(→)</button>
+	            <button class="button" onclick="rotateBtnClick()">旋转(space)</button>
+	            <button class="button" onclick="moveToBottomBtnClick()">到底(↓)</button>
+	        </div>
+	        <div>
+	            <button style="display: none" onclick="nextTick()">next</button>
+	            <button class="button" id="start-btn" onclick="startBtnClick()">开始游戏</button>
+	        </div>
+	    </div>
+	</body>
+	
+	</html>
